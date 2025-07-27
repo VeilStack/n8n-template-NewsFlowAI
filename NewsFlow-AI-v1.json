@@ -1,0 +1,909 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# triggers",
+        "height": 1188,
+        "width": 588,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        48
+      ],
+      "id": "e48c1ef7-9ca6-4a35-82af-636842e2374e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# RSS",
+        "height": 596,
+        "width": 588,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        48
+      ],
+      "id": "398c6de3-e795-4b2e-9224-d12d9b763208",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# API",
+        "height": 596,
+        "width": 588,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        640
+      ],
+      "id": "eea11357-3eb9-47d7-aa4c-c04cef2de989",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# MERGE",
+        "height": 1188,
+        "width": 284
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        48
+      ],
+      "id": "d950e0a7-1428-484a-b6e6-8334ca386578",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "url": "https://krebsonsecurity.com/feed/",
+        "options": {}
+      },
+      "id": "f3b5e9c7-3a7f-4d6f-95cd-4d6503809e2d",
+      "name": "krebsonsecurity",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "position": [
+        672,
+        112
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "url": "https://www.securitylab.ru/_services/export/rss/vulnerabilities/",
+        "options": {}
+      },
+      "id": "d086a6e7-d593-40a5-9260-b9dd627d05fd",
+      "name": "securitylab",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "position": [
+        672,
+        288
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.feedburner.com/TheHackersNews?spm=a2ty_o01.29997173.0.0.213dc921l5hnRC",
+        "options": {}
+      },
+      "id": "f12b0729-6274-4e97-8685-68666125c7aa",
+      "name": "feeds.feedburner",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "position": [
+        672,
+        480
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "url": "https://gnews.io/api/v4/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "AI"
+            },
+            {
+              "name": "lang",
+              "value": "en"
+            },
+            {
+              "name": "apikey",
+              "value": "YOUR API KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1be83ecc-d2e1-4b94-a25b-699378b54bda",
+      "name": "Fetch GNews articles",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        624,
+        720
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "AI"
+            },
+            {
+              "name": "language",
+              "value": "en"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "20"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Api-Key",
+              "value": "YOUR API KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c030a32-c232-4a4c-b35f-6a4c01381155",
+      "name": "Fetch NewsAPI articles",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        624,
+        928
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "3d6ae636-137f-44ba-8154-ec944c6b0c32",
+      "name": "Merge GNews & NewsAPI",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1152,
+        288
+      ],
+      "typeVersion": 3.1
+    },
+    {
+      "parameters": {
+        "content": "# SCRAPING",
+        "height": 1188,
+        "width": 1052,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1328,
+        48
+      ],
+      "id": "0d50f203-9d66-4ce7-be49-d745e0fa64a8",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "isoDate",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff3cc2e7-65c8-48ce-a0ea-ce59fac9df32",
+      "name": "Sort by date",
+      "type": "n8n-nodes-base.sort",
+      "position": [
+        1920,
+        304
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nlet ret = \"\"\nfor (const item of $input.all()) {\n  ret = ret + '- [' + item.json.title + '](' + item.json.link + ' \"‌\"): \\n' + item.json.content + \"\\n\\n\"\n}\n\nreturn {data: ret}"
+      },
+      "id": "b9575fa7-8849-4977-8a55-0dabc070ec98",
+      "name": "Transform new to MD",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        2128,
+        304
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "e7cf09fb-af35-495d-a840-341f8d0ddcd8",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              },
+              "leftValue": "={{ $json.isoDate }}",
+              "rightValue": "={{ Date.now() - 4 * 24 * 60 * 60 * 1000 }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1db035b-e3b5-44f4-aa1c-980b1b8d3271",
+      "name": "Filter by date",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        1664,
+        304
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9aec0a09-4b6f-4fca-98e6-789abd5fdc51",
+              "name": "title",
+              "type": "string",
+              "value": "={{ $json.title }}"
+            },
+            {
+              "id": "56277e54-31a0-4804-ad23-c9ee6d244641",
+              "name": "content",
+              "type": "string",
+              "value": "={{ $json.contentSnippet }}"
+            },
+            {
+              "id": "a3586a80-588e-42d1-9780-370a956ddf6b",
+              "name": "link",
+              "type": "string",
+              "value": "={{ $json.link }}"
+            },
+            {
+              "id": "58f01618-8014-4685-9192-d15d596ffcd9",
+              "name": "isoDate",
+              "type": "number",
+              "value": "={{ new Date($json.isoDate).getTime() }}"
+            },
+            {
+              "id": "716bb078-8df3-4d96-8a1b-4aec4f8cf206",
+              "name": "categories",
+              "type": "array",
+              "value": "={{ $json.categories }}"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "id": "6580c08c-8564-4e7a-98d0-ec8e35ac00ce",
+      "name": "Transform date-rss",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1408,
+        304
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {},
+      "id": "a04d387a-8a3f-4496-a4eb-49dc1df6da6c",
+      "name": "Merge GNews & NewsAPI2",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1152,
+        800
+      ],
+      "typeVersion": 3.1
+    },
+    {
+      "parameters": {
+        "content": "# AI ANALYSIS",
+        "height": 1188,
+        "width": 1052,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2384,
+        48
+      ],
+      "id": "aae20932-49f2-4498-b9f5-48e6298e827e",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-chat-v3-0324:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        544
+      ],
+      "id": "43dc3de4-03f7-4f22-ac56-c59cd3aabae8",
+      "name": "OpenRouter ChatModel"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "your chat id",
+        "file": "https://i.postimg.cc/T2BDwWc3/imagenews.jpg",
+        "additionalFields": {}
+      },
+      "id": "caaf0326-5740-42dc-bfde-d7001b3f051e",
+      "name": "SendSummaryTtoTelegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2784,
+        304
+      ],
+      "webhookId": "21eb8e1c-87de-45af-888d-699fbd443bc8",
+      "typeVersion": 1.2,
+      "retryOnFail": true,
+      "executeOnce": true,
+      "alwaysOutputData": false,
+      "waitBetweenTries": 1200
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an experienced journalist and content editor. Your task is to create clear, accurate, neutral, and well-structured news items in Telegram format based on the provided data.\n\nMAIN REQUIREMENTS:\n1. Output format:\n- News must be presented as a list with Markdown links.\n- Each news item = one line in the format [Headline](url).\n- Do not add extra comments or text outside the links.\n- Language for headlines: Russian.\n2. Post length:\n- The total length of the post must be strictly up to 1000 characters (including spaces and punctuation).\n- Each headline must be concise and informative (~50-70 characters).\n3. Number of news items:\n- Output only the 10 most recent and relevant news items.\n4. Data source:\n- Data is taken from {{ $json.articles }}.\n5. Formatting:\n- Use only simple Markdown:\n- Asterisks for bold text (**headlines**)\n- Line break after each news item\n- No HTML, hashtags, or extra constructions\n\nQUALITY CRITERIA:\n- Compliance with all formatting requirements.\n- All facts must correspond to the provided data.\n- Avoid complex constructions, jargon, and tautology.\n- Ensure the text is easy to read: short headlines, clarity, logical structure.\n- Focus on the main event. Do not deviate from the topic.\n- Do not write anything extra in the output about CHECK or anything unrelated to the news.\n\nEXAMPLE OUTPUT IN ENGLISH:\n\nVeilStack AI NEWS \n• [CISA Orders Urgent Patching After Chinese Hackers Exploit SharePoint Flaws in Live Attacks](https://thehackernews.com/2025/07/cisa-orders-urgent-patching-after.html)\n\n• [Europol Arrests XSS Forum Admin After 12-Year Cybercrime Spree](https://thehackernews.com/2025/07/europol-arrests-xss-forum-admin-in-kyiv.html)\n\n• [U.S. Sanctions N. Korean IT Firm for Illicit Revenue Scheme](https://thehackernews.com/2025/07/us-sanctions-firm-behind-n-korean-it.html)",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        2400,
+        800
+      ],
+      "id": "df86ad95-a114-4571-a566-4697be5e8d7e",
+      "name": "API",
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an experienced journalist and content editor. Your task is to create clear, accurate, neutral, and well-structured news items in Telegram format based on the provided data.\n\nMAIN REQUIREMENTS:\n1. Output format:\n- News must be presented as a list with Markdown links.\n- Each news item = one line in the format [Headline](url).\n- Do not add extra comments or text outside the links.\n- Language for headlines: Russian.\n2. Post length:\n- The total length of the post must be strictly up to 1000 characters (including spaces and punctuation).\n- Each headline must be concise and informative (~50-70 characters).\n3. Number of news items:\n- Output only the 10 most recent and relevant news items.\n4. Data source:\n- Data is taken from {{ $json.data }}.\n5. Formatting:\n- Use only simple Markdown:\n- Asterisks for bold text (**headlines**)\n- Line break after each news item\n- No HTML, hashtags, or extra constructions\n\nQUALITY CRITERIA:\n- Compliance with all formatting requirements.\n- All facts must correspond to the provided data.\n- Avoid complex constructions, jargon, and tautology.\n- Ensure the text is easy to read: short headlines, clarity, logical structure.\n- Focus on the main event. Do not deviate from the topic.\n- Do not write anything extra in the output about CHECK or anything unrelated to the news.\n\nEXAMPLE OUTPUT IN ENGLISH:\n\nVeilStack AI NEWS \n• [CISA Orders Urgent Patching After Chinese Hackers Exploit SharePoint Flaws in Live Attacks](https://thehackernews.com/2025/07/cisa-orders-urgent-patching-after.html)\n\n• [Europol Arrests XSS Forum Admin After 12-Year Cybercrime Spree](https://thehackernews.com/2025/07/europol-arrests-xss-forum-admin-in-kyiv.html)\n\n• [U.S. Sanctions N. Korean IT Firm for Illicit Revenue Scheme](https://thehackernews.com/2025/07/us-sanctions-firm-behind-n-korean-it.html)",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        2400,
+        304
+      ],
+      "id": "16c5e0ce-7cf6-437a-8714-392d486bc88f",
+      "name": "RSS",
+      "executeOnce": true,
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            },
+            {
+              "triggerAtHour": 21
+            }
+          ]
+        }
+      },
+      "id": "de44c725-d645-4f2a-b647-d061a4e65522",
+      "name": "9AM AND 9PM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        128,
+        336
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 22
+            },
+            {
+              "triggerAtHour": 22
+            }
+          ]
+        }
+      },
+      "id": "42b62224-17d5-43f0-8c33-087954d4fe97",
+      "name": "10AM AND 10PM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        128,
+        832
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "chatId": "your chat id",
+        "text": "={{ $('RSS').item.json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "d956780f-d00d-43b7-8246-982f12ed16e4",
+      "name": "Send summary to Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        3232,
+        304
+      ],
+      "webhookId": "21eb8e1c-87de-45af-888d-699fbd443bc8",
+      "typeVersion": 1.2,
+      "retryOnFail": true,
+      "executeOnce": true,
+      "waitBetweenTries": 500
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2992,
+        304
+      ],
+      "id": "a4e3b95a-bd41-4f42-8555-10dbdb11584c",
+      "name": "Wait",
+      "webhookId": "bbbb83fa-b168-4bd8-a94a-1fa0854c36ec"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "-your chat id",
+        "file": "https://i.postimg.cc/T2BDwWc3/imagenews.jpg",
+        "additionalFields": {}
+      },
+      "id": "8f7534ef-46a0-49f8-ad70-6e370f88e3d3",
+      "name": "SendSummaryTtoTelegram1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2816,
+        800
+      ],
+      "webhookId": "21eb8e1c-87de-45af-888d-699fbd443bc8",
+      "typeVersion": 1.2,
+      "retryOnFail": true,
+      "executeOnce": true,
+      "alwaysOutputData": false,
+      "waitBetweenTries": 1200
+    },
+    {
+      "parameters": {
+        "chatId": "your chat id",
+        "text": "={{ $('API').item.json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "7e6f207d-0fa1-49be-88b6-527ff4cff6d2",
+      "name": "Send summary to Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        3264,
+        800
+      ],
+      "webhookId": "21eb8e1c-87de-45af-888d-699fbd443bc8",
+      "typeVersion": 1.2,
+      "retryOnFail": true,
+      "executeOnce": true,
+      "waitBetweenTries": 500
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3024,
+        800
+      ],
+      "id": "6497dc7e-1fd0-43e2-a71a-4cb29e0982d7",
+      "name": "Wait1",
+      "webhookId": "bbbb83fa-b168-4bd8-a94a-1fa0854c36ec"
+    },
+    {
+      "parameters": {
+        "content": "# VERSION 1",
+        "height": 1440,
+        "width": 3696,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -112
+      ],
+      "id": "b6d6e425-daef-4dcf-907c-0a17686f78df",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "articles",
+              "type": "string",
+              "value": "={{ $json.articles }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "274d35e2-1f8c-4498-bb3c-1aa0e2c0fa2c",
+      "name": "GNews: Map to articles1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        864,
+        720
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "articles",
+              "type": "string",
+              "value": "={{ $json.articles }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c845df68-5373-4cc8-b5eb-75cdf59579ea",
+      "name": "NewsAPI: Map to articles1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        848,
+        928
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "# https://github.com/VeilStack/n8n-template-NewsFlowAI",
+        "height": 80,
+        "width": 960
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        16,
+        -112
+      ],
+      "id": "1992cdd3-67c7-4b4d-98df-185567d8850c",
+      "name": "Sticky Note7"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "krebsonsecurity": {
+      "main": [
+        [
+          {
+            "node": "Merge GNews & NewsAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "securitylab": {
+      "main": [
+        [
+          {
+            "node": "Merge GNews & NewsAPI",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "feeds.feedburner": {
+      "main": [
+        [
+          {
+            "node": "Merge GNews & NewsAPI",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Fetch GNews articles": {
+      "main": [
+        [
+          {
+            "node": "GNews: Map to articles1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch NewsAPI articles": {
+      "main": [
+        [
+          {
+            "node": "NewsAPI: Map to articles1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge GNews & NewsAPI": {
+      "main": [
+        [
+          {
+            "node": "Transform date-rss",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort by date": {
+      "main": [
+        [
+          {
+            "node": "Transform new to MD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform new to MD": {
+      "main": [
+        [
+          {
+            "node": "RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter by date": {
+      "main": [
+        [
+          {
+            "node": "Sort by date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform date-rss": {
+      "main": [
+        [
+          {
+            "node": "Filter by date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge GNews & NewsAPI2": {
+      "main": [
+        [
+          {
+            "node": "API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter ChatModel": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "RSS",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "API",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendSummaryTtoTelegram": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API": {
+      "main": [
+        [
+          {
+            "node": "SendSummaryTtoTelegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS": {
+      "main": [
+        [
+          {
+            "node": "SendSummaryTtoTelegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "9AM AND 9PM": {
+      "main": [
+        [
+          {
+            "node": "krebsonsecurity",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "securitylab",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "feeds.feedburner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "10AM AND 10PM": {
+      "main": [
+        [
+          {
+            "node": "Fetch GNews articles",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch NewsAPI articles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send summary to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendSummaryTtoTelegram1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Send summary to Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GNews: Map to articles1": {
+      "main": [
+        [
+          {
+            "node": "Merge GNews & NewsAPI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NewsAPI: Map to articles1": {
+      "main": [
+        [
+          {
+            "node": "Merge GNews & NewsAPI2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "11ae6432-6d12-4eff-83a6-d136a612e418",
+  "meta": {
+    "instanceId": "eb3114d8f187529ce5e7b7f0fc493ff942bdd738021d47dc9508f993ed113a3d"
+  },
+  "id": "M7AE0jS7zPGF8thl",
+  "tags": []
+}
