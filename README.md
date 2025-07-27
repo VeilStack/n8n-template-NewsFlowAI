@@ -1,6 +1,7 @@
 # 📰 NewsFlow-AI · n8n Template
 
 **NewsFlow-AI** is an automated news aggregation system built with [n8n](https://n8n.io). It collects news from RSS feeds and public APIs (GNews, NewsAPI), processes and summarizes it using AI, and publishes the result to a Telegram channel in a clean, readable format.
+<img width="1955" height="766" alt="image" src="https://github.com/user-attachments/assets/7d891541-e6fd-4d70-8360-892ccf49e07e" />
 
 ## 🚀 Features
 
@@ -92,6 +93,8 @@
 • [US sanctions North Korean IT firm](https://thehackernews.com/...)
 
 ```
+<img width="548" height="466" alt="image" src="https://github.com/user-attachments/assets/25a4bc04-e682-4acc-9682-9bd2217bc44a" />
+
 
 ---
 
